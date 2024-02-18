@@ -1,7 +1,7 @@
 package com.example.demo;
-import java.util.*;
 
-import org.springframework.http.MediaType;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,6 +22,13 @@ public class HelloWorldController {
         // Then, fetch the user's playlists
         // This is a placeholder and needs to be replaced with actual implementation
         return "Received Spotify Account: " + spotifyAccount;
+    }
+    @GetMapping("/spotify/playlists")
+    public String getPlaylists(@RegisteredOAuth2AuthorizedClient("spotify") OAuth2AuthorizedClient authorizedClient) {
+        String accessToken = authorizedClient.getAccessToken().getTokenValue();
+        // Use the access token to make requests to the Spotify Web API
+        // This is a placeholder and needs to be replaced with actual implementation
+        return "Access token: " + accessToken;
     }
 
 
